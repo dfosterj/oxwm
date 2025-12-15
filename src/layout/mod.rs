@@ -4,6 +4,8 @@ pub mod normie;
 pub mod tabbed;
 pub mod tiling;
 
+use std::str::FromStr;
+
 use x11rb::protocol::xproto::Window;
 
 pub type LayoutBox = Box<dyn Layout>;
@@ -24,7 +26,7 @@ pub enum LayoutType {
 }
 
 impl LayoutType {
-    pub fn new(&self) -> LayoutBox {
+    pub fn to_boxed_layout(&self) -> LayoutBox {
         match self {
             Self::Tiling => Box::new(tiling::TilingLayout),
             Self::Normie => Box::new(normie::NormieLayout),
@@ -53,8 +55,12 @@ impl LayoutType {
             Self::Tabbed => "tabbed",
         }
     }
+}
 
-    pub fn from_str(s: &str) -> Result<Self, String> {
+impl FromStr for LayoutType {
+    type Err = String;
+
+    fn from_str(s: &str) -> Result<Self, String> {
         match s.to_lowercase().as_str() {
             "tiling" => Ok(Self::Tiling),
             "normie" | "floating" => Ok(Self::Normie),
@@ -68,7 +74,7 @@ impl LayoutType {
 
 pub fn layout_from_str(s: &str) -> Result<LayoutBox, String> {
     let layout_type = LayoutType::from_str(s)?;
-    Ok(layout_type.new())
+    Ok(layout_type.to_boxed_layout())
 }
 
 pub fn next_layout(current_name: &str) -> &'static str {
