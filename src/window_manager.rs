@@ -799,11 +799,13 @@ impl WindowManager {
             KeyAction::FocusStack => {
                 if let Arg::Int(direction) = arg {
                     self.focusstack(*direction)?;
+                    self.restack()?;
                 }
             }
             KeyAction::MoveStack => {
                 if let Arg::Int(direction) = arg {
                     self.move_stack(*direction)?;
+                    self.restack()?;
                 }
             }
             KeyAction::Quit | KeyAction::Restart => {
