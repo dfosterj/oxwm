@@ -93,6 +93,21 @@ local blocks = {
     --     color = colors.green,
     --     underline = true,
     -- }),
+    -- Uncomment to add volume status (Supports both PipeWire (wpctl) and PulseAudio (pactl))
+	-- oxwm.bar.block.volume({
+	-- 	format = "VOL {}% ",
+	-- 	interval = 5,
+	-- 	color = colors.light_blue,
+	-- 	underline = false,
+	-- }),
+    --
+    -- Uncomment to add wifi status Requires NetworkManager (nmcli)
+	-- oxwm.bar.block.wifi({
+	-- 	format = "WIFI {} ",
+	-- 	interval = 10,
+	-- 	color = colors.cyan,
+	-- 	underline = false,
+	-- }),
 };
 
 -------------------------------------------------------------------------------
