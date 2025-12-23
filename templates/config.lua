@@ -53,9 +53,9 @@ local bar_font = "monospace:style=Bold:size=10"
 local blocks = {
 	oxwm.bar.block.battery({
 		format = "Bat: {}%",
-		charging = "⚡ Bat: {}%",
-		discharging = "- Bat: {}%",
-		full = "✓ Bat: {}%",
+		charging = "[+] Bat: {}%",
+		discharging ="[-] Bat: {}%",
+		full ="[f] Bat: {}%",
 		interval = 30,
 		color = colors.green,
 		underline = false,
